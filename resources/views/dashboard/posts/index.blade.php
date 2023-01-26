@@ -13,7 +13,7 @@
       {{ session('success') }}
     </div>
     @endif
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm" id="example">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -23,6 +23,13 @@
           <th scope="col">Author</th>
           <th scope="col">Action</th>
         </tr>
+        {{-- <tr class="filters">
+          <th></th>
+          <th><input type="text" class="form-control filter-input" placeholder="search.." data-column="1"></th>
+          <th><input type="text" class="form-control filter-input" placeholder="search.." data-column="2"></th>
+          <th><input type="text" class="form-control filter-input" placeholder="search.." data-column="3"></th>
+          <th><input type="text" class="form-control filter-input" placeholder="search.." data-column="4"></th>
+        </tr> --}}
       </thead>
       <tbody>
         @foreach ($posts as $post)
@@ -46,5 +53,7 @@
       </tbody>
     </table>
   </div>
+{{-- 
+<script src="//cdn.datatables.net/1.10.16/js/jquery.datatables.js"></script> --}}
 
 @endsection

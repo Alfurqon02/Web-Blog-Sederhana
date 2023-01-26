@@ -125,3 +125,6 @@ body {
   color: #008cff;
 }
 
+thead input {
+  width: 100%;
+}
