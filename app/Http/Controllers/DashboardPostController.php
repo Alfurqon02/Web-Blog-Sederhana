@@ -93,6 +93,7 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('dashboard.posts.edit', [
             'post' => $post,
             'categories' => Category::all()
@@ -112,7 +113,7 @@ class DashboardPostController extends Controller
             'image' => 'image|file|max:2048',
             'title' => 'required|max:64',
             'category_id' => 'required',
-            
+
         ];
 
 
@@ -124,7 +125,7 @@ class DashboardPostController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-        
+
         if($request->file('image')){
             if($post->image){
                 Storage::delete($post->image);
@@ -135,7 +136,7 @@ class DashboardPostController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
 
-        
+
 
         Post::where('id', $post->id)
             ->update($validatedData);
@@ -154,7 +155,7 @@ class DashboardPostController extends Controller
         if($post->image){
             Storage::delete($post->image);
         }
-        
+
         Post::destroy($post->id);
         return redirect('/dashboard/posts')->with('success', 'Post Has Been Deleted');
     }
